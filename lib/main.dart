@@ -9,11 +9,22 @@ class QuizApp extends StatelessWidget{
     // TODO: implement build
     return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('HELLO WORLD')
-        ),
+        body: new AwesomePage(),
       ),
     );
   }
 
+}
+
+class AwesomePage extends StatelessWidget {
+  const AwesomePage({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('HELLO WORLD'),
+    );
+  }
 }
