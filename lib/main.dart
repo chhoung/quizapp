@@ -1,31 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:quizapp/screens/screens.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'services/services.dart';
+import 'screens/screens.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(QuizApp());
 
-class QuizApp extends StatelessWidget{
-
+class QuizApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(
-      navigatorObservers: [
-          FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+    return MultiProvider(
+      providers: [
+        StreamProvider<Report>.value(
+          value: Global.reportRef.documentStream,
+          catchError: (context, err) => null,
+        ),
+        StreamProvider<FirebaseUser>.value(value: AuthService().user),
       ],
+      child: MaterialApp(
+        navigatorObservers: [
+          FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+        ],
 
-      //name routes
-      routes: {
-        '/' : (context) => LoginScreen(),
-        '/topics': (context) => TopicsScreen(),
-        '/profile': (context) => ProfileScreen(),
-        '/about': (context) => AboutScreen(),
+        //name routes
+        routes: {
+          '/': (context) => LoginScreen(),
+          '/topics': (context) => TopicsScreen(),
+          '/profile': (context) => ProfileScreen(),
+          '/about': (context) => AboutScreen(),
+        },
 
-      },
-
-      //Theme
-       theme: ThemeData(
+        //Theme
+        theme: ThemeData(
           fontFamily: 'Nunito',
           bottomAppBarTheme: BottomAppBarTheme(
             color: Colors.black87,
@@ -40,8 +49,7 @@ class QuizApp extends StatelessWidget{
           ),
           buttonTheme: ButtonThemeData(),
         ),
+      ),
     );
   }
-
 }
-
