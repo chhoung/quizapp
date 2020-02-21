@@ -11,7 +11,6 @@ void main() => runApp(QuizApp());
 class QuizApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MultiProvider(
       providers: [
         StreamProvider<Report>.value(
