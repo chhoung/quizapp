@@ -15,7 +15,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     auth.getUser.then((user) {
       if (user != null) {

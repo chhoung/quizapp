@@ -4,17 +4,6 @@ import '../shared/shared.dart';
 import '../screens/screens.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Test extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(title: Text('topics'), backgroundColor: Colors.purple),
-      bottomNavigationBar: AppBottomNav(),
-    );
-  }
-}
-
 class TopicsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
