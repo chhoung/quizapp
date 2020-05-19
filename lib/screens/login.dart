@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Text(
               'Login to Start',
-              style: Theme.of(context).textTheme.headline,
+              style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center,
             ),
             Text('Your Tagline'),

@@ -26,7 +26,7 @@ class TopicBuilder extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.deepPurple,
-              title: Text('Topics'),
+              title: Text('ប្រធានបទ'),
               actions: [
                 IconButton(
                   icon: Icon(FontAwesomeIcons.userCircle,
@@ -162,12 +162,12 @@ class QuizList extends StatelessWidget {
             child: ListTile(
               title: Text(
                 quiz.title,
-                style: Theme.of(context).textTheme.title,
+                style: Theme.of(context).textTheme.headline6,
               ),
               subtitle: Text(
                 quiz.description,
                 overflow: TextOverflow.fade,
-                style: Theme.of(context).textTheme.subhead,
+                style: Theme.of(context).textTheme.subtitle1,
               ),
               leading: QuizBadge(topic: topic, quizId: quiz.id),
             ),

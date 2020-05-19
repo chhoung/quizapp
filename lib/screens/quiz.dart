@@ -40,7 +40,7 @@ class QuizScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      builder: (_) => QuizState(),
+      create: (_) => QuizState(),
       child: FutureBuilder(
         future: Document<Quiz>(path: 'quizzes/$quizId').getData(),
         builder: (BuildContext context, AsyncSnapshot snap) {
@@ -96,7 +96,7 @@ class StartPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(quiz.title, style: Theme.of(context).textTheme.headline),
+          Text(quiz.title, style: Theme.of(context).textTheme.headline5),
           Divider(),
           Expanded(child: Text(quiz.description)),
           ButtonBar(
@@ -171,7 +171,7 @@ class QuestionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var state = Provider.of<QuizState>(context);
+    var state = Provider.of<QuizState>(context, listen: false);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
@@ -195,7 +195,7 @@ class QuestionPage extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     state.selected = opt;
-                    _bottomSheet(context, opt);
+                    _bottomSheet(context, opt, state);
                   },
                   child: Container(
                     padding: EdgeInsets.all(16),
@@ -211,7 +211,7 @@ class QuestionPage extends StatelessWidget {
                             margin: EdgeInsets.only(left: 16),
                             child: Text(
                               opt.value,
-                              style: Theme.of(context).textTheme.body2,
+                              style: Theme.of(context).textTheme.bodyText2,
                             ),
                           ),
                         )
@@ -228,9 +228,9 @@ class QuestionPage extends StatelessWidget {
   }
 
   /// Bottom sheet shown when Question is answered
-  _bottomSheet(BuildContext context, Option opt) {
+  _bottomSheet(BuildContext context, Option opt, QuizState state) {
     bool correct = opt.correct;
-    var state = Provider.of<QuizState>(context);
+    //  var state = Provider.of<QuizState>(context);
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
